@@ -34,7 +34,7 @@ const FilterBar = ({ onSearch, onSort })  => {
             className="me-2 rounded-pill"
             onChange={handleSort}
           >
-            <option selected disabled>Ordenar</option>
+            <option selected disabled value=''>Sort</option>
             <option value="asc">asc</option>
             <option value="desc">desc</option>
           </Form.Select>

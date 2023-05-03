@@ -19,8 +19,8 @@ const PokeContainer = () => {
     setSearchTerm(searchValue);
   };
 
-  const handleSort = (sortValue) => {
-    setSortType(sortValue);
+  const handleSort = (sortType) => {
+    setSortType(sortType);
   };
 
   if (pokemons.length === 0) {
