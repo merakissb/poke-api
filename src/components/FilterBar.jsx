@@ -1,10 +1,15 @@
 import React from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 
-const FilterBar = ({ onSearch })  => {
-  const handleChange = (event) => {
+const FilterBar = ({ onSearch, onSort })  => {
+  const handleSearch = (event) => {
     const searchValue = event.target.value;
     onSearch(searchValue);
+  };
+
+  const handleSort = (event) => {
+    const sortValue = event.target.value;
+    onSort(sortValue);
   };
 
   return (
@@ -18,12 +23,17 @@ const FilterBar = ({ onSearch })  => {
               placeholder="Search"
               className="me-2 rounded-pill"
               aria-label="Search"
-              onChange={handleChange}
+              onChange={handleSearch}
             />
           </Form>
         </Col>
         <Col sm={3}>
-          <Form.Select size='lg' aria-label="sort" className="me-2 rounded-pill">
+          <Form.Select
+            size='lg'
+            aria-label="sort"
+            className="me-2 rounded-pill"
+            onChange={handleSort}
+          >
             <option selected disabled>Ordenar</option>
             <option value="asc">asc</option>
             <option value="desc">desc</option>

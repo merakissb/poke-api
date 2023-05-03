@@ -7,6 +7,8 @@ import FilterBar from './FilterBar';
 const PokeContainer = () => {
   const [pokemons, setPokemons] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortType, setSortType] = useState('');
+
 
   const fetchPokemons = async () => {
     const pokemons = await getPokemons();
@@ -17,6 +19,10 @@ const PokeContainer = () => {
     setSearchTerm(searchValue);
   };
 
+  const handleSort = (sortValue) => {
+    setSortType(sortValue);
+  };
+
   if (pokemons.length === 0) {
     fetchPokemons();
   }
@@ -25,11 +31,19 @@ const PokeContainer = () => {
     pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  let sortedPokemons = [...filteredPokemons];
+
+  if (sortType === "asc") {
+    sortedPokemons.sort();
+  } else if (sortType === "desc") {
+    sortedPokemons.reverse();
+  }
+
   return (
     <Container>
-      <FilterBar onSearch={handleSearch} />
+      <FilterBar onSearch={handleSearch} onSort={handleSort} />
       <Row>
-        {filteredPokemons.map((pokemon) => (
+        {sortedPokemons.map((pokemon) => (
           <Col key={pokemon.id} md={2}>
             <PokeCard
               id={pokemon.id}
