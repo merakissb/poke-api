@@ -33,9 +33,9 @@ const PokeContainer = () => {
 
   let sortedPokemons = [...filteredPokemons];
 
-  if (sortType === "asc") {
+  if (sortType === 'asc') {
     sortedPokemons.sort();
-  } else if (sortType === "desc") {
+  } else if (sortType === 'desc') {
     sortedPokemons.reverse();
   }
 

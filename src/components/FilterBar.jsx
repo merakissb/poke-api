@@ -1,5 +1,7 @@
-import React from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import React from 'react';
+import { Col, Form, Row } from 'react-bootstrap';
+import Dictionary from './utils/dictionary/es';
+import './style.css';
 
 const FilterBar = ({ onSearch, onSort })  => {
   const handleSearch = (event) => {
@@ -13,34 +15,32 @@ const FilterBar = ({ onSearch, onSort })  => {
   };
 
   return (
-    <Container className="mt-5">
-      <Row className="justify-content-around pb-3">
-        <Col sm={6}>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              size="lg"
-              placeholder="Search"
-              className="me-2 rounded-pill"
-              aria-label="Search"
-              onChange={handleSearch}
-            />
-          </Form>
-        </Col>
-        <Col sm={3}>
-          <Form.Select
+    <Row className='justify-content-around my-4'>
+      <Col md={6}>
+        <Form>
+          <Form.Control
+            type='search'
             size='lg'
-            aria-label="sort"
-            className="me-2 rounded-pill"
-            onChange={handleSort}
-          >
-            <option selected disabled value=''>Sort</option>
-            <option value="asc">asc</option>
-            <option value="desc">desc</option>
-          </Form.Select>
-        </Col>
-      </Row>
-    </Container>
+            placeholder={Dictionary.filterBar.searchPlaceholder}
+            className='me-2 rounded-pill my-2'
+            aria-label='Search'
+            onChange={handleSearch}
+          />
+        </Form>
+      </Col>
+      <Col md={4}>
+        <Form.Select
+          size='lg'
+          aria-label='sort'
+          className='me-2 rounded-pill my-2'
+          onChange={handleSort}
+        >
+          <option selected disabled>{Dictionary.filterBar.sortPlaceholder}</option>
+          <option value='asc'>{Dictionary.filterBar.option.asc}</option>
+          <option value='desc'>{Dictionary.filterBar.option.desc}</option>
+        </Form.Select>
+      </Col>
+    </Row>
   );
 }
 
