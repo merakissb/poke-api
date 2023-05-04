@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { getPokemons } from './services/pokeService';
 import PokeCard from './PokeCard';
 import FilterBar from './FilterBar';
+import Alert from '../alert/Alert'
+import Dictionary from '../utils/dictionary/es';
 
 const PokeContainer = () => {
+
   const [pokemons, setPokemons] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('');
-
+  const [showAlert, setShowAlert] = useState(false);
 
   const fetchPokemons = async () => {
-    const pokemons = await getPokemons();
-    setPokemons(pokemons);
+    try {
+      const response = await getPokemons();
+      setPokemons(response);
+      setShowAlert(false);
+    } catch (error) {
+      setShowAlert(true);
+    }
   };
 
   const handleSearch = (searchValue) => {
@@ -23,9 +31,11 @@ const PokeContainer = () => {
     setSortType(sortType);
   };
 
-  if (pokemons.length === 0) {
-    fetchPokemons();
-  }
+  useEffect(() => {
+    if (pokemons.length === 0) {
+      fetchPokemons();
+    }
+  }, [pokemons]);
 
   const filteredPokemons = pokemons.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -40,8 +50,14 @@ const PokeContainer = () => {
   }
 
   return (
-    <Container>
+    <Container className='mt-2'>
       <FilterBar onSearch={handleSearch} onSort={handleSort} />
+      {showAlert && (
+        <Alert
+          variant='warning'
+          message={Dictionary.alert.warning.message}
+        />
+      )}
       <Row>
         {sortedPokemons.map((pokemon) => (
           <Col key={pokemon.id} md={2}>

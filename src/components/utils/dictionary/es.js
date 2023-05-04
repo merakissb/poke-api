@@ -9,6 +9,11 @@ const Dictionary = {
       asc: 'Ascendente',
       desc: 'Descendente'
     }
+  },
+  alert: {
+    warning: {
+      message: 'Hubo un error al obtener los datos. Por favor, inténtelo de nuevo más tarde.'
+    }
   }
 };
 

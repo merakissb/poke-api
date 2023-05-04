@@ -4,6 +4,8 @@ const POKE_API_URL = 'https://pokeapi.co/api/v2';
 const MAX_POKEMONS = 151;
 
 export const getPokemons = async () => {
+ //throw new Error('Error fetching data');
+
   const response = await axios.get(`${POKE_API_URL}/pokemon?limit=${MAX_POKEMONS}`);
   const pokemons = await Promise.all(
     /*
