@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
-import Dictionary from './utils/dictionary/es';
-import './style.css';
+import Dictionary from '../utils/dictionary/es';
 
 const FilterBar = ({ onSearch, onSort })  => {
   const handleSearch = (event) => {

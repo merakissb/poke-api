@@ -1,5 +1,5 @@
 import React from 'react';
-import PokeContainer from './components/PokeContainer';
+import PokeContainer from './components/poke-api/PokeContainer';
 
 const App = () => {
   return (
